@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Miss Honey Acharya 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #e8a0a0;
+    --rose-deep: #c96a7a;
+    --rose-light: #f5d4d4;
+    --gold: #d4a853;
+    --cream: #fdf6f0;
+    --dark: #1a0a0f;
+    --text: #3d1f2a;
+    --text-soft: #7a5060;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── STARS CANVAS ── */
+  #stars-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── FLOATING HEARTS ── */
+  .heart-float {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatUp linear forwards;
+    font-size: 18px;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  /* ── SCENE 1: OPENING ── */
+  #scene-opening {
+    background: radial-gradient(ellipse at 50% 60%, #2d0a18 0%, #0d0408 70%);
+  }
+
+  .opening-pre {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--rose);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease 0.5s forwards;
+  }
+
+  .opening-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeSlideIn 1.2s ease 1.2s forwards;
+  }
+
+  .opening-name span {
+    color: var(--rose);
+    font-style: italic;
+  }
+
+  .typing-wrapper {
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(245, 212, 212, 0.85);
+    max-width: 560px;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease 2.5s forwards;
+  }
+
+  #typing-text::after {
+    content: '|';
+    animation: blink 0.8s step-end infinite;
+    color: var(--rose);
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease 4.5s forwards;
+    cursor: pointer;
+  }
+  .scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--text-soft);
+    text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1.5px solid var(--rose);
+    border-bottom: 1.5px solid var(--rose);
+    transform: rotate(45deg);
+    animation: bounceDown 1.5s ease-in-out infinite;
+  }
+  @keyframes bounceDown {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(5px); }
+  }
+
+  /* ── SCENE 2: BUILDUP ── */
+  #scene-buildup {
+    background: radial-gradient(ellipse at 30% 50%, #1e0612 0%, #0a0208 70%);
+    gap: 5rem;
+  }
+
+  .buildup-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.4;
+    max-width: 600px;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .buildup-line.visible { opacity: 1; transform: translateY(0); }
+  .buildup-line em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .divider-heart {
+    font-size: 1.4rem;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .divider-heart.visible { opacity: 0.6; transform: scale(1); }
+
+  /* ── SCENE 3: THE QUESTION ── */
+  #scene-question {
+    background: radial-gradient(ellipse at 50% 40%, #250810 0%, #0a0208 80%);
+  }
+
+  .question-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease 0.3s forwards;
+  }
+
+  .question-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease 0.6s forwards;
+  }
+
+  .question-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 6vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    max-width: 700px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeSlideIn 1.2s ease 1s forwards;
+  }
+  .question-main em {
+    font-style: italic;
+    color: var(--rose);
+    display: block;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-wrap {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease 1.8s forwards;
+    position: relative;
+    min-height: 80px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .btn {
+    padding: 0.85rem 2.5rem;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+
+  #btn-yes {
+    background: linear-gradient(135deg, var(--rose-deep), #a0354a);
+    color: white;
+    box-shadow: 0 4px 20px rgba(201, 106, 122, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.4s ease, font-size 0.4s ease;
+  }
+  #btn-yes:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 30px rgba(201, 106, 122, 0.6);
+  }
+
+  #btn-no {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid rgba(122, 80, 96, 0.4);
+    transition: background 0.3s ease, transform 0.4s ease, font-size 0.4s ease, padding 0.4s ease, opacity 0.4s ease, left 0.18s ease, top 0.18s ease;
+    transform-origin: center;
+    white-space: nowrap;
+  }
+  #btn-no:hover { background: rgba(122, 80, 96, 0.1); }
+  #btn-no.escaping { position: fixed; }
+
+  .no-msg {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--rose);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .no-msg.show { opacity: 1; }
+
+  /* ── SCENE YES: CONFETTI ── */
+  #scene-yes {
+    display: none;
+    background: radial-gradient(ellipse at 50% 40%, #1e0812 0%, #080208 80%);
+    flex-direction: column;
+    gap: 2rem;
+  }
+  #scene-yes.active { display: flex; }
+
+  .yes-emoji { font-size: 3rem; animation: pop 0.5s ease; }
+  @keyframes pop {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .yes-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 300;
+    color: var(--cream);
+  }
+  .yes-sub {
+    font-size: 1rem;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+
+  /* ── FORM ── */
+  .form-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(232, 160, 160, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    margin-top: 1rem;
+    text-align: left;
+    animation: fadeSlideIn 0.8s ease forwards;
+  }
+
+  .form-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .form-card p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232, 160, 160, 0.2);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--rose);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-group select option { background: #1a0a0f; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, var(--rose-deep), #a0354a);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── FINAL MESSAGE ── */
+  #scene-final {
+    display: none;
+    background: radial-gradient(ellipse at 50% 40%, #1e0812 0%, #080208 80%);
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  #scene-final.active { display: flex; }
+
+  .final-icon { font-size: 3.5rem; animation: heartbeat 1.5s ease-in-out infinite; }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.12); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.05); }
+    70% { transform: scale(1); }
+  }
+
+  .final-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.3;
+  }
+  .final-sub {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    font-style: italic;
+    max-width: 400px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: rgba(122, 80, 96, 0.5);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CONFETTI ── */
+  .confetti-piece {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    z-index: 999;
+    animation: confettiFall linear forwards;
+    border-radius: 1px;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ── SHARED ANIMS ── */
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SPARKLES ── */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 14px;
+    animation: sparkleAnim 2s ease forwards;
+    opacity: 0;
+  }
+  @keyframes sparkleAnim {
+    0% { opacity: 0; transform: scale(0) rotate(0deg); }
+    40% { opacity: 1; transform: scale(1) rotate(180deg); }
+    100% { opacity: 0; transform: scale(0.5) rotate(360deg); }
+  }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(232, 160, 160, 0.15);
+    border: 1px solid rgba(232, 160, 160, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    color: var(--cream);
+    z-index: 1000;
+    transition: transform 0.4s ease;
+    white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div id="toast"></div>
+
+<!-- ══════════════════════════════════════════
+     SCENE 1 — OPENING
+══════════════════════════════════════════ -->
+<section id="scene-opening">
+  <p class="opening-pre">✉ a message for you</p>
+  <h1 class="opening-name">Hey <span>Miss Honey Acharya</span>...</h1>
+  <p class="typing-wrapper">
+    <span id="typing-text"></span>
+  </p>
+  <div class="scroll-hint" onclick="smoothScrollTo('scene-buildup')">
+    <span>keep reading</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SCENE 2 — BUILDUP
+══════════════════════════════════════════ -->
+<section id="scene-buildup">
+  <p class="buildup-line" data-reveal>You somehow turn my normal days into <em>something I look forward to</em></p>
+  <div class="divider-heart" data-reveal>🌸</div>
+  <p class="buildup-line" data-reveal>And honestly… I keep wishing<br>these moments with you last <em>eternity</em></p>
+  <div class="divider-heart" data-reveal>✨</div>
+  <p class="buildup-line" data-reveal>So I was thinking… why not make<br>one night that's just <em>ours?</em></p>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SCENE 3 — THE QUESTION
+══════════════════════════════════════════ -->
+<section id="scene-question">
+  <p class="question-label">April 11, 2026</p>
+  <p class="question-date">✦ &nbsp; Prom Night &nbsp; ✦</p>
+  <h2 class="question-main">Will you be<br><em>my prom date?</em></h2>
+
+  <div class="btn-wrap" id="btn-wrap">
+    <button class="btn" id="btn-yes" onclick="handleYes()">💚 Yes!</button>
+    <button class="btn" id="btn-no" onclick="handleNo()">✕ No</button>
+    <span class="no-msg" id="no-msg"></span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SCENE YES — CONFETTI + FORM
+══════════════════════════════════════════ -->
+<section id="scene-yes">
+  <div class="yes-emoji">🎉</div>
+  <h2 class="yes-headline">Best decision ever 😌</h2>
+  <p class="yes-sub">Your puranpoli will try not to disappoint you!</p>
+
+  <div class="form-card">
+    <h3>A little planning goes a long way 💐</h3>
+    <p>Help me make this night perfect for you</p>
+
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="f-name" placeholder="My Girl" value="My Girl">
+    </div>
+    <div class="form-group">
+      <label>Your Address (for pickup)</label>
+      <input type="text" id="f-address" placeholder="My heart...">
+    </div>
+    <div class="form-group">
+      <label>Favourite Cuisine 🍽</label>
+      <select id="f-cuisine">
+        <option value="">— Pick one —</option>
+        <option>Italian</option>
+        <option>Indian</option>
+        <option>Japanese / Sushi</option>
+        <option>Chinese</option>
+        <option>Mediterranean</option>
+        <option>Continental</option>
+        <option>Lebanese</option>
+        <option>Mexican</option>
+        <option>Surprise me!</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Any dietary preferences?</label>
+      <input type="text" id="f-dietary" placeholder="Vegetarian, allergies, etc...">
+    </div>
+    <div class="form-group">
+      <label>Anything else I should know? 💌</label>
+      <textarea id="f-notes" placeholder="Favourite flowers, songs, anything..."></textarea>
+    </div>
+
+    <button class="btn-submit" id="btn-submit" onclick="submitForm()">
+      Send it 🌹
+    </button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SCENE FINAL — AFTER FORM
+══════════════════════════════════════════ -->
+<section id="scene-final">
+  <div class="final-icon">❤️</div>
+  <h2 class="final-headline">So it's official… you're my prom date now 😌</h2>
+  <p class="final-sub">Hope you're ready, because I plan on making this night a little <em>too memorable</em>.</p>
+  <p class="final-sub">April 11th — just you and me ✨</p>
+  <p class="final-sub" style="margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.5;">April 11, 2026 &nbsp;✦&nbsp; Prom Night</p>
+</section>
+
+<footer>Made with ❤️ by someone who really means it &nbsp;·&nbsp; April 2026</footer>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────────
+// IMPORTANT: Replace these with your real EmailJS credentials
+// Sign up free at https://www.emailjs.com/
+// 1. Create account → Email Services → Add Gmail → get Service ID
+// 2. Email Templates → Create template → get Template ID  
+// 3. Account → API Keys → get Public Key
+const EMAILJS_PUBLIC_KEY  = "hrFDjWQ0eyd-Ffy7a";
+const EMAILJS_SERVICE_ID  = "service_1m6nl1s";
+const EMAILJS_TEMPLATE_ID = "template_e6fnhat";
+// ─────────────────────────────────────────────────────────────────────
+
+// ── STARS ──
+const canvas = document.getElementById('stars-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function initStars() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = Array.from({ length: 180 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.4 + 0.3,
+    a: Math.random(),
+    speed: Math.random() * 0.004 + 0.001
+  }));
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.a += s.speed;
+    const alpha = 0.3 + 0.5 * Math.abs(Math.sin(s.a));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(245, 212, 212, ${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+initStars();
+drawStars();
+window.addEventListener('resize', initStars);
+
+// ── TYPING ANIMATION ──
+const typingTarget = "I've been meaning to ask you something...";
+const typingEl = document.getElementById('typing-text');
+let tIdx = 0;
+
+function typeNext() {
+  if (tIdx <= typingTarget.length) {
+    typingEl.textContent = typingTarget.slice(0, tIdx);
+    tIdx++;
+    setTimeout(typeNext, tIdx < 5 ? 300 : Math.random() * 60 + 35);
+  }
+}
+setTimeout(typeNext, 2800);
+
+// ── SCROLL-REVEAL ──
+const reveals = document.querySelectorAll('[data-reveal]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.3 });
+reveals.forEach(el => observer.observe(el));
+
+function smoothScrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── FLOATING HEARTS (background) ──
+function spawnHeart() {
+  const h = document.createElement('div');
+  h.className = 'heart-float';
+  h.textContent = ['❤️','🌸','✨','💫','🌷'][Math.floor(Math.random() * 5)];
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.bottom = '-30px';
+  h.style.animationDuration = (Math.random() * 8 + 6) + 's';
+  h.style.fontSize = (Math.random() * 12 + 10) + 'px';
+  document.body.appendChild(h);
+  h.addEventListener('animationend', () => h.remove());
+}
+setInterval(spawnHeart, 3000);
+
+// ── NO BUTTON LOGIC ──
+let noCount = 0;
+const noMessages = [
+  "Hmm... I think you misclicked 😏",
+  "Okay wait... think again carefully 🤨",
+  "This is your last chance... but you can still change your mind 😉"
+];
+const noMsgEl = document.getElementById('no-msg');
+const btnNo   = document.getElementById('btn-no');
+const btnYes  = document.getElementById('btn-yes');
+
+function updateButtonSizes() {
+  // No button shrinks — minimum scale 0.35 so it never fully disappears
+  const noScale  = Math.max(0.35, 1 - noCount * 0.1);
+  btnNo.style.transform = `scale(${noScale})`;
+  btnNo.style.opacity   = Math.max(0.3, 1 - noCount * 0.08);
+
+  // Yes button grows — and update its label with "please" repeated
+  const yesScale = 1 + noCount * 0.1;
+  const pleases  = noCount > 0 ? ' ' + 'please '.repeat(noCount).trim() + ' 🥺' : '';
+  btnYes.textContent = '💚 Yes!' + pleases;
+  btnYes.style.transform  = `scale(${yesScale})`;
+  btnYes.style.boxShadow  = `0 8px ${20 + noCount * 10}px rgba(201,106,122,${Math.min(0.9, 0.4 + noCount * 0.1)})`;
+}
+
+function handleNo() {
+  // Show message for first 3 clicks
+  if (noCount < 3) {
+    noMsgEl.textContent = noMessages[noCount];
+    noMsgEl.classList.add('show');
+    setTimeout(() => noMsgEl.classList.remove('show'), 2500);
+  }
+
+  noCount++;
+  updateButtonSizes();
+
+  // After 3rd click — activate escape mode
+  if (noCount === 3) {
+    const rect = btnNo.getBoundingClientRect();
+    btnNo.classList.add('escaping');
+    btnNo.style.left = rect.left + 'px';
+    btnNo.style.top  = rect.top  + 'px';
+  }
+}
+
+function moveNoButtonAway(cursorX, cursorY) {
+  if (noCount < 3) return;
+
+  const rect = btnNo.getBoundingClientRect();
+  const cx   = rect.left + rect.width  / 2;
+  const cy   = rect.top  + rect.height / 2;
+  const dist = Math.hypot(cursorX - cx, cursorY - cy);
+
+  // Only flee when cursor is within 120px
+  if (dist > 120) return;
+
+  // Flee directly away from cursor
+  const angle  = Math.atan2(cy - cursorY, cx - cursorX);
+  const step   = 180;
+  const margin = 24;
+  const bw     = btnNo.offsetWidth  || 80;
+  const bh     = btnNo.offsetHeight || 40;
+
+  let newX = cx + Math.cos(angle) * step - bw / 2;
+  let newY = cy + Math.sin(angle) * step - bh / 2;
+
+  newX = Math.max(margin, Math.min(window.innerWidth  - bw - margin, newX));
+  newY = Math.max(margin, Math.min(window.innerHeight - bh - margin, newY));
+
+  btnNo.style.left = newX + 'px';
+  btnNo.style.top  = newY + 'px';
+}
+
+// Mouse tracking
+document.addEventListener('mousemove', e => moveNoButtonAway(e.clientX, e.clientY));
+
+// Touch tracking
+document.addEventListener('touchmove', e => {
+  if (noCount < 3) return;
+  const t    = e.touches[0];
+  const rect = btnNo.getBoundingClientRect();
+  const cx   = rect.left + rect.width  / 2;
+  const cy   = rect.top  + rect.height / 2;
+  if (Math.hypot(t.clientX - cx, t.clientY - cy) < 130) {
+    e.preventDefault();
+    moveNoButtonAway(t.clientX, t.clientY);
+  }
+}, { passive: false });
+
+// Keep in viewport on resize
+window.addEventListener('resize', () => {
+  if (noCount < 3) return;
+  const bw     = btnNo.offsetWidth  || 80;
+  const bh     = btnNo.offsetHeight || 40;
+  const margin = 24;
+  const curL   = parseFloat(btnNo.style.left) || 0;
+  const curT   = parseFloat(btnNo.style.top)  || 0;
+  btnNo.style.left = Math.min(curL, window.innerWidth  - bw - margin) + 'px';
+  btnNo.style.top  = Math.min(curT, window.innerHeight - bh - margin) + 'px';
+});
+
+// ── YES HANDLER ──
+function handleYes() {
+  launchConfetti();
+  document.getElementById('scene-question').style.display = 'none';
+  const sceneYes = document.getElementById('scene-yes');
+  sceneYes.classList.add('active');
+  sceneYes.scrollIntoView({ behavior: 'smooth' });
+  spawnManyHearts();
+}
+
+// ── CONFETTI ──
+function launchConfetti() {
+  const colors = ['#e8a0a0','#c96a7a','#d4a853','#f5d4d4','#ff6b9d','#ffd700'];
+  for (let i = 0; i < 120; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      c.style.left = (10 + Math.random() * 80) + 'vw';
+      c.style.top = '-10px';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.width = (Math.random() * 10 + 5) + 'px';
+      c.style.height = (Math.random() * 10 + 5) + 'px';
+      c.style.animationDuration = (Math.random() * 2.5 + 1.5) + 's';
+      c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      document.body.appendChild(c);
+      c.addEventListener('animationend', () => c.remove());
+    }, i * 25);
+  }
+}
+
+function spawnManyHearts() {
+  for (let i = 0; i < 8; i++) {
+    setTimeout(spawnHeart, i * 200);
+  }
+}
+
+// ── SPARKLE ON CLICK ──
+document.addEventListener('click', e => {
+  for (let i = 0; i < 4; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = ['✨','💫','🌟','⭐'][Math.floor(Math.random() * 4)];
+    s.style.left = (e.clientX + (Math.random() - 0.5) * 60) + 'px';
+    s.style.top  = (e.clientY + (Math.random() - 0.5) * 60) + 'px';
+    s.style.animationDelay = (i * 0.1) + 's';
+    document.body.appendChild(s);
+    s.addEventListener('animationend', () => s.remove());
+  }
+});
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── FORM SUBMIT ──
+async function submitForm() {
+  const name    = document.getElementById('f-name').value.trim();
+  const address = document.getElementById('f-address').value.trim();
+  const cuisine = document.getElementById('f-cuisine').value;
+  const dietary = document.getElementById('f-dietary').value.trim();
+  const notes   = document.getElementById('f-notes').value.trim();
+
+  if (!address || !cuisine) {
+    showToast('Please fill in address and cuisine 💌');
+    return;
+  }
+
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Sending... 💌';
+
+  // Build email content
+  const templateParams = {
+    to_email: 'sathwikshetty98@gmail.com',
+    from_name: name || 'Hania Acharya',
+    prom_date: 'April 11, 2026',
+    address: address,
+    cuisine: cuisine,
+    dietary: dietary || 'None mentioned',
+    notes: notes || 'Nothing extra',
+    reply_to: 'no-reply@promproposal.com'
+  };
+
+  try {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+
+    // Success → show final scene
+    document.getElementById('scene-yes').style.display = 'none';
+    const sceneFinal = document.getElementById('scene-final');
+    sceneFinal.classList.add('active');
+    sceneFinal.scrollIntoView({ behavior: 'smooth' });
+    launchConfetti();
+
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    // Even if email fails, show final scene (don't block the moment!)
+    document.getElementById('scene-yes').style.display = 'none';
+    const sceneFinal = document.getElementById('scene-final');
+    sceneFinal.classList.add('active');
+    sceneFinal.scrollIntoView({ behavior: 'smooth' });
+    launchConfetti();
+    showToast('Details saved! Check your email setup ✉️');
+  }
+}
+</script>
+</body>
+</html>
